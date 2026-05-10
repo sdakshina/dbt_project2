@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: dev
+    description: 'integrate the snowflake tables'
+    database: japan
+    schema: dev
+    tables:
+      - name: SRC_PRODUCT
