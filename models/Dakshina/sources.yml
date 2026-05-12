@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: dev
+    schema: dev
+    database: japan
+    tables:
+      - name: employee_dup
