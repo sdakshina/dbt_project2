@@ -8,4 +8,4 @@ SELECT
     a.VAR_DATA:supplier.supplier_name::STRING AS supplier_name,
     f.VALUE::STRING AS tag
 FROM {{source('bronze','PRODUCTS_RAW_DAK')}} a,
-LATERAL FLATTEN(input => a.VAR_DATA:tags) f;
+LATERAL FLATTEN(input => a.VAR_DATA:tags) f

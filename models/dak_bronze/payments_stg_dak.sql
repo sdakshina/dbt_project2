@@ -8,4 +8,4 @@ SELECT
     f.VALUE:bank::STRING AS bank,
     f.VALUE:timestamp::TIMESTAMP AS txn_timestamp
 FROM {{source('bronze','PAYMENTS_RAW_DAK')}} a,
-LATERAL FLATTEN(input => a.VAR_DATA:transactions) f;
+LATERAL FLATTEN(input => a.VAR_DATA:transactions) f

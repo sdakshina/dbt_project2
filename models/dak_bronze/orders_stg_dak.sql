@@ -12,4 +12,4 @@ select var_data:customer_id::number as customer_id,
     var_data:status::string as status
 
     from {{source('bronze','ORDERS_RAW_DAK')}},
-    lateral flatten(input=>var_data:items)f1;
+    lateral flatten(input=>var_data:items)f1

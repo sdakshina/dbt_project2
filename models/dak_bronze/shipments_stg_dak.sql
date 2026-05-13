@@ -4,4 +4,4 @@ SELECT
     f.VALUE:status::STRING AS tracking_status,
     f.VALUE:timestamp::TIMESTAMP AS event_timestamp
 FROM {{source('bronze','SHIPMENTS_RAW_DAK')}} a,
-LATERAL FLATTEN(input => a.VAR_DATA:tracking_events) f;
+LATERAL FLATTEN(input => a.VAR_DATA:tracking_events) f

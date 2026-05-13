@@ -5,4 +5,4 @@ SELECT
     f.VALUE:product_id::STRING AS product_id,
     f.VALUE:reason::STRING AS reason
 FROM {{source('bronze','RETURNS_RAW_DAK')}} a,
-LATERAL FLATTEN(input => a.VAR_DATA:items) f;
+LATERAL FLATTEN(input => a.VAR_DATA:items) f

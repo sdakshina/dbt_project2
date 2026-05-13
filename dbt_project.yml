@@ -41,6 +41,8 @@ models:
     sara_bronze:
       +materialized: table
       +schema: bronze
+      
     dak_bronze:
       +materialized: table
       +schema: bronze
+      +tags: stg

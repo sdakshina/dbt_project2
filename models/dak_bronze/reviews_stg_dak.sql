@@ -6,4 +6,4 @@ SELECT
     a.VAR_DATA:review_date::DATE AS review_date,
     f.VALUE::STRING AS comment
 FROM {{source('bronze','REVIEWS_RAW_DAK')}} a,
-LATERAL FLATTEN(input => a.VAR_DATA:comments) f;
+LATERAL FLATTEN(input => a.VAR_DATA:comments) f
