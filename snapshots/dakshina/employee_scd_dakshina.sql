@@ -6,9 +6,7 @@
         unique_key='emp_id',
         strategy='check',
         check_cols=['empname','depart'],
-        invalidate_hard_deletes='True',
-        target_schema='DEV'
-         
+        invalidate_hard_deletes='True'
     )
 }}
 
