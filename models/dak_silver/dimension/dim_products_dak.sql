@@ -1,8 +1,8 @@
 {{
     config
-    {
-        materialized='incrementa'
-    }
+    (
+        materialized='incremental'
+    )
 }}
 
 
@@ -15,6 +15,6 @@ select  {{
     case when DBT_VALID_TO is null then 'Y' else 'N' END active
      from {{ ref('snap_products') }} src
 
-{%is is_incremental()%}
+{%if is_incremental()%}
 where src.loaded_time >(select max(loaded_time)) from {{this}}
 {%endif%}
