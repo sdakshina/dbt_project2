@@ -7,7 +7,7 @@
 
 select 
     {{ 
-        dbt_utils.generate_surrogate_key(['customer_id', 'dbt_valid_from'])
+        dbt_utils.generate_surrogate_key(['customer_id', 'phone_type','dbt_valid_from'])
     }} as customer_skey,
     customer_id,
     phone,
@@ -19,5 +19,5 @@ select
  from {{ ref('snap_customer_phn') }} as src
 
  {%if is_incremental()%}
- where src.time > (select max(time) from {{this}})
+ where src.time > (select max(loaded_time) from {{this}})
  {%endif%}

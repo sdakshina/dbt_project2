@@ -23,5 +23,5 @@ select
  from {{ ref('snap_customer_detail_v1') }} as src
 
  {%if is_incremental()%}
- where src.time > (select max(time) from {{this}})
+ where src.time > (select max(loaded_time) from {{this}})
  {%endif%}
