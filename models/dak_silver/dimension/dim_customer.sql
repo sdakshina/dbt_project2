@@ -1,7 +1,10 @@
 {{
     config
     (
-        materialized='incremental'
+        materialized='incremental',
+        incremental_strategy='merge',
+        unique_key=['customer_skey'],
+        merge_update_columns=['end_time','active']
     )
 }}
 
@@ -16,12 +19,8 @@ select
     country,
     state,
     city,
-    time as loaded_time,
+    dbt_updated_at as updated_tmsp,
     DBT_VALID_FROM as start_time,
-    DBT_VALID_TO end_time,
+    DBT_VALID_TO as end_time,
     case when DBT_VALID_TO is null then 'Y' else 'N' END active
  from {{ ref('snap_customer_detail_v1') }} as src
-
- {%if is_incremental()%}
- where src.time > (select max(loaded_time) from {{this}})
- {%endif%}

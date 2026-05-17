@@ -1,7 +1,10 @@
 {{
     config
     (
-        materialized='incremental'
+        materialized='incremental',
+        incremental_strategy='merge',
+        unique_key=['customer_skey'],
+        merge_update_columns=['end_time','active']
     )
 }}
 
@@ -14,7 +17,3 @@ select  {{
     DBT_VALID_TO end_time,
     case when DBT_VALID_TO is null then 'Y' else 'N' END active
      from {{ ref('snap_products') }} src
-
-{%if is_incremental()%}
-where src.loaded_time >(select max(loaded_time) from {{this}})
-{%endif%}
