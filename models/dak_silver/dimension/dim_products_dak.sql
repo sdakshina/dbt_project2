@@ -16,5 +16,5 @@ select  {{
      from {{ ref('snap_products') }} src
 
 {%if is_incremental()%}
-where src.loaded_time >(select max(loaded_time)) from {{this}}
+where src.loaded_time >(select max(loaded_time) from {{this}})
 {%endif%}
