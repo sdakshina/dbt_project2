@@ -1,4 +1,4 @@
-{%snapshot snap_customer_details%}
+{%snapshot snap_customer_detail%}
 
 {{
     config
