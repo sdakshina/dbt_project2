@@ -6,6 +6,7 @@ SELECT
     a.VAR_DATA:category.sub::STRING AS sub_category,
     a.VAR_DATA:supplier.supplier_id::STRING AS supplier_id,
     a.VAR_DATA:supplier.supplier_name::STRING AS supplier_name,
-    f.VALUE::STRING AS tag
+    f.VALUE::STRING AS tag,
+    current_timestamp() as loaded_time
 FROM {{source('bronze','PRODUCTS_RAW_DAK')}} a,
 LATERAL FLATTEN(input => a.VAR_DATA:tags) f

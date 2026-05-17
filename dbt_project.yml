@@ -46,6 +46,12 @@ models:
       +materialized: table
       +schema: bronze
       +tags: stg
+    
+    dak_silver:
+      dimension:
+        +materialized: table
+        +schema: silver
+        +tags: dim
 
 snapshots:
   dbt_project2:
