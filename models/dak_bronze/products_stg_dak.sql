@@ -1,4 +1,5 @@
 SELECT
+distinct
     a.VAR_DATA:product_id::STRING AS product_id,
     a.VAR_DATA:product_name::STRING AS product_name,
     a.VAR_DATA:price::NUMBER AS price,
@@ -6,7 +7,7 @@ SELECT
     a.VAR_DATA:category.sub::STRING AS sub_category,
     a.VAR_DATA:supplier.supplier_id::STRING AS supplier_id,
     a.VAR_DATA:supplier.supplier_name::STRING AS supplier_name,
-    f.VALUE::STRING AS tag,
+    array_to_string(a.var_data:tags,',') as tags,
     current_timestamp() as loaded_time
 FROM {{source('bronze','PRODUCTS_RAW_DAK')}} a,
 LATERAL FLATTEN(input => a.VAR_DATA:tags) f

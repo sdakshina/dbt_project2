@@ -52,7 +52,15 @@ models:
         +materialized: table
         +schema: silver
         +tags: dim
+    
+    dak_gold:
+        +materialized: table
+        +schema: gold
+        +tags: dim
 
 snapshots:
   dbt_project2:
     +target_schema: silver
+
+on-run-start:
+  - "alter session set timezone = 'America/Los_Angeles'"
