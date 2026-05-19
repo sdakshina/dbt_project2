@@ -41,7 +41,15 @@ models:
     sara_bronze:
       +materialized: table
       +schema: bronze
-      
+      +tags: s_brnz
+
+    sara_silver:
+      silver_dim: 
+        +materialized: table
+        +schema: silver
+        +tags: s_dim
+
+
     dak_bronze:
       +materialized: table
       +schema: bronze
@@ -60,7 +68,8 @@ models:
 
 snapshots:
   dbt_project2:
-    +target_schema: silver
+      +target_schema: silver
+
 
 on-run-start:
   - "alter session set timezone = 'America/Los_Angeles'"

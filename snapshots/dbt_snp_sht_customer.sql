@@ -7,6 +7,7 @@
     )
 }}
 
+with dedup as ( 
 select
 customer_id,
 first_name,
@@ -16,4 +17,9 @@ city,
 state,
 country,
 current_timestamp() as loaded_timestamp from  {{ ref('dbt_stg_customer_sara') }}
+qualify row_number()over(partition by customer_id order by lod_ts desc ) =1)
+
+select 
+customer_id, first_name, last_name, email, city, state, country, loaded_timestamp from dedup
+
 {% endsnapshot %}
