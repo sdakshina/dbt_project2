@@ -1,9 +1,10 @@
-{% snapshot dbt_snp_sht_cusotmer %}
+{% snapshot dbt_snp_sht_customer %}
 {{
     config(
         unique_key ='customer_id',
         strategy = 'check',
-        check_cols  = ['first_name', 'last_name', 'email', 'city', 'state', 'country']
+        check_cols  = ['first_name', 'last_name', 'email', 'city', 'state', 'country'],
+        target_schema='silver'
     )
 }}
 
