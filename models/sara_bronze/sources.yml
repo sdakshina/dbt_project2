@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: brnz_sara
+    description: 'fetching file data from snowflake bronze layer table'
+    database: "{{target.database}}"
+    schema: bronze
+    tables:
+      - name: STG_CUSTOMER_SARA
+      - name: STG_FILE_LIST_SARA
+      - name: STG_ORDERS_SARA
+      - name: STG_PAYMENTS_SARA
+      - name: STG_PRODUCTS_SARA
+      - name: STG_RETURNS_SARA
+      - name: STG_REVIEWS_SARA
+      - name: STG_SHIPMENTS_SARA
