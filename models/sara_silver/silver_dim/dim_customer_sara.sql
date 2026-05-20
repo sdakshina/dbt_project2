@@ -2,7 +2,8 @@
     config(
         materialized = 'incremental',
         incremental_strategy = 'merge',
-        unique_key = 'cust_key'
+        unique_key = 'cust_key',
+        merge_update_columns = ['end_Date','active_flag']
     )
 }}    
 

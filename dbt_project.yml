@@ -38,6 +38,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_project2:
     # Applies to all files under models/example/
+    dak_bronze:
+      +materialized: table
+      +schema: bronze
+      +tags: bronze
+  
     sara_bronze:
       +materialized: table
       +schema: bronze
@@ -48,27 +53,35 @@ models:
         +materialized: table
         +schema: silver
         +tags: s_dim
+      silver_fact: 
+        +materialized: table
+        +schema: silver
+        +tags: s_fact
 
-
-    dak_bronze:
-      +materialized: table
-      +schema: bronze
-      +tags: stg
-    
     dak_silver:
       dimension:
         +materialized: table
         +schema: silver
-        +tags: dim
-    
+        +tags: silver
+      fact:
+        +materialized: table
+        +schema: silver
+        +tags: silver
+
+    sara_gold:
+      +materialized: table
+      +schema: gold
+      +tags: s_dim
+  
     dak_gold:
         +materialized: table
         +schema: gold
-        +tags: dim
+        +tags: gold
 
 snapshots:
   dbt_project2:
       +target_schema: silver
+      
 
 
 on-run-start:
