@@ -81,7 +81,7 @@ models:
 snapshots:
   dbt_project2:
       +target_schema: silver
-      +tag: snapshots
+      +tags: snapshots
       
 
 
