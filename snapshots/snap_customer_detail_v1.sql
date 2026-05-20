@@ -1,0 +1,26 @@
+{%snapshot snap_customer_detail_v1%}
+
+{{
+    config
+    (
+        unique_key='customer_id',
+        strategy='check',
+        check_cols=['email','first_name','last_name','country','state','city']
+    )
+}}
+
+
+with de_dupliate_customer as
+(
+
+    select customer_id,email,first_name,last_name,country,state,city,time
+    from  {{ ref('customers_stg_dak') }} 
+    qualify row_number() over(partition by customer_id order by time desc)=1
+
+)
+
+select customer_id,email,first_name,last_name,country,state,city,current_timestamp() as insrt_timsp from de_dupliate_customer
+
+
+
+{%endsnapshot%}

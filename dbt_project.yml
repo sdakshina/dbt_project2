@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'dbt_project2'
 version: '1.0.0'
 config-version: 2
 
@@ -36,7 +36,53 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  my_new_project:
+  dbt_project2:
     # Applies to all files under models/example/
-    example:
+    dak_bronze:
       +materialized: table
+      +schema: bronze
+      +tags: bronze
+  
+    sara_bronze:
+      +materialized: table
+      +schema: bronze
+      +tags: s_brnz
+
+    sara_silver:
+      silver_dim: 
+        +materialized: table
+        +schema: silver
+        +tags: s_dim
+      silver_fact: 
+        +materialized: table
+        +schema: silver
+        +tags: s_fact
+
+    dak_silver:
+      dimension:
+        +materialized: table
+        +schema: silver
+        +tags: silver
+      fact:
+        +materialized: table
+        +schema: silver
+        +tags: silver
+
+    sara_gold:
+      +materialized: table
+      +schema: gold
+      +tags: s_gold
+  
+    dak_gold:
+        +materialized: table
+        +schema: gold
+        +tags: gold
+
+snapshots:
+  dbt_project2:
+      +target_schema: silver
+      
+
+
+on-run-start:
+  - "alter session set timezone = 'America/Los_Angeles'"

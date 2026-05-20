@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: 'Bronze layer data'
+    database: "{{target.database}}"
+    schema: bronze
+    tables:
+      - name: CUSTOMERS_RAW_DAK
+      - name: ORDERS_RAW_DAK
+      - name: PAYMENTS_RAW_DAK
+      - name: PRODUCTS_RAW_DAK
+      - name: RETURNS_RAW_DAK
+      - name: REVIEWS_RAW_DAK
+      - name: SHIPMENTS_RAW_DAK
