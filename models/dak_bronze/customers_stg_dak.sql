@@ -10,4 +10,3 @@
     var_data:created_at::timestamp as time
     from {{source('bronze','CUSTOMERS_RAW_DAK')}},
     lateral flatten(input=>var_data:phones)a
-    where
