@@ -3,7 +3,7 @@
     (
         materialized='incremental',
         incremental_strategy='merge',
-        unique_key=['customer_skey'],
+        unique_key=['product_skey'],
         merge_update_columns=['end_time','active']
     )
 }}
