@@ -71,7 +71,7 @@ models:
     sara_gold:
       +materialized: table
       +schema: gold
-      +tags: s_dim
+      +tags: s_gold
   
     dak_gold:
         +materialized: table
